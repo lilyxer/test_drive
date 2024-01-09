@@ -1,6 +1,7 @@
 #!python3
 
 import asyncio
+import logging
 
 from aiogram import Bot, Dispatcher
 from config_data.config import Config, load_config
@@ -8,9 +9,17 @@ from config_data.config import Config, load_config
 from handlers import other_handlers,user_handlers
 
 
+logger = logging.getLogger(name=__name__)
+
 async def main() -> None:
+    logging.basicConfig(
+        level=logging.WARNING,
+        format='%(filename)s:%(lineno)d #%(levelname)-8s '
+               '[%(asctime)s] - %(name)s - %(message)s')
+
     config: Config = load_config()
-    bot = Bot(token=config.tg_bot.token)
+
+    bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
     dp = Dispatcher()
 
     dp.include_router(user_handlers.router)

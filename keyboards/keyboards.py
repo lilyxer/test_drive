@@ -17,5 +17,7 @@ class BotKeyBoard:
 
 brand_boards = BotKeyBoard(*cars)(time=True)
 models_chery_boards = BotKeyBoard(*cars['Chery'])(time=False)
+models_omoda_boards = BotKeyBoard(*cars['Omoda'])(time=False)
+models_getour_boards = BotKeyBoard(*cars['Getour'])(time=False)
 
 # print(brand_boards)

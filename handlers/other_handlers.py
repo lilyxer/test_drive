@@ -8,7 +8,7 @@ router = Router()
 
 @router.message()
 async def send_answer(msg: Message):
-    await msg.answer(text='Я не знаю такой команды')
+    await msg.answer(text='Жёванный крот! я не чат GPT\nпользуйся встроенной клавиатурой :)')
 
 @router.message()
 async def send_echo(msg: Message):

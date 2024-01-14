@@ -10,9 +10,9 @@ router = Router()
 async def send_answer(msg: Message):
     await msg.answer(text='Жёванный крот! я не чат GPT\nпользуйся встроенной клавиатурой :)')
 
-@router.message()
-async def send_echo(msg: Message):
-    try:
-        await msg.send_copy(chat_id=msg.chat.id)
-    except TypeError:
-        await msg.reply(text=lexicon_ru['no_echo'])
+# @router.message()
+# async def send_echo(msg: Message):
+#     try:
+#         await msg.send_copy(chat_id=msg.chat.id)
+#     except TypeError:
+#         await msg.reply(text=lexicon_ru['no_echo'])

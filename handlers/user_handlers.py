@@ -9,6 +9,7 @@ from lexicon.lexicon import lexicon_ru, cars
 
 router = Router()
 
+
 @router.message(CommandStart())
 async def process_start_command(msg: Message):
     try:
@@ -17,9 +18,20 @@ async def process_start_command(msg: Message):
         name = 'у тебя нет имени? :/'
     await msg.answer(text=f'<b>Привет</b>, {name}!', parse_mode='html')
     await msg.answer(text=lexicon_ru['/start'], parse_mode='html',
-                     reply_markup=brand_boards)
+                     reply_markup=main_menu_board)
 
-@router.message(F.text == '🚗 Другой автомобиль')
+@router.message(F.text == '⏎ Меню')
+@router.message(Command(commands='menu'))
+async def process_menu(msg: Message):
+    await msg.answer(text=lexicon_ru['menu'],
+                     reply_markup=main_menu_board)
+
+@router.message(F.text == '🗺 Маршрут')
+async def process_map(msg: Message):
+    await msg.answer(text=lexicon_ru['map'],
+                     reply_markup=main_menu_board)
+
+@router.message(F.text.in_({'🚗 Другой автомобиль', 'Автомобили'}))
 async def process_other_answer(msg: Message):
     await msg.answer(text=lexicon_ru['choice'], parse_mode='html',
                      reply_markup=brand_boards)

@@ -15,8 +15,8 @@ class BotKeyBoard:
         board.row(*self._entres)
         return board.as_markup(one_time_keyboard=time, resize_keyboard=True)
 
-main_menu_board = ReplyKeyboardMarkup(keyboard=[KeyboardButton(text='Автомобили'),
-                        KeyboardButton(text='🗺 Маршрут')], one_time_keyboard=True,
+main_menu_board = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Автомобили'),
+                        KeyboardButton(text='🗺 Маршрут')]], one_time_keyboard=True,
                         resize_keyboard=True)
 
 brand_boards = BotKeyBoard(*cars)(time=True)

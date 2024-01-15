@@ -3,3 +3,6 @@ venv_my_bot/
 .vscode/
 __pycache__/
 specification/
+
+# nohup python3 bot.py &
+# killall python3

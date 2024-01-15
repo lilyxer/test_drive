@@ -22,7 +22,7 @@ main_menu_board = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Автом
 brand_boards = BotKeyBoard(*cars)(time=True)
 models_chery_boards = BotKeyBoard(*cars['Chery'])(time=False)
 models_omoda_boards = BotKeyBoard(*cars['Omoda'])(time=False)
-models_getour_boards = BotKeyBoard(*cars['Getour'])(time=False)
+models_jetour_boards = BotKeyBoard(*cars['Getour'])(time=False)
 models_jaecoo_boards = BotKeyBoard(*cars['Jaecoo'])(time=False)
 models_haval_boards = BotKeyBoard(*cars['Haval'])(time=False)
 models_changan_boards = BotKeyBoard(*cars['Changan'])(time=False)

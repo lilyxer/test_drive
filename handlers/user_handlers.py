@@ -45,8 +45,8 @@ async def process_chery_answer(msg: Message):
     match msg.text:
         case 'Chery':
             await msg.answer(text=lexicon_ru['choice'], reply_markup=models_chery_boards)
-        case 'Getour':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_getour_boards)
+        case 'Jetour':
+            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_jetour_boards)
         case 'Omoda':
             await msg.answer(text=lexicon_ru['choice'], reply_markup=models_omoda_boards)
         case 'Jaecoo':

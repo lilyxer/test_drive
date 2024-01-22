@@ -1,82 +1,60 @@
 import os
 
 from aiogram import Router, F, types
-from aiogram.types import Message
 from aiogram.filters import Command, CommandStart
-from keyboards.keyboards import *
-
-from lexicon.lexicon import lexicon_ru, cars
+from aiogram.types import CallbackQuery, Message
+from keyboards.keyboards import BotKeyBoard, BotKeyBoardHelp
+from lexicon.lexicon import lexicon_ru, buttons, cars
 
 router = Router()
 
 
 @router.message(CommandStart())
 async def process_start_command(msg: Message):
-    try:
-        name = msg.from_user.username
-    except Exception:
-        name = 'у тебя нет имени? :/'
-    await msg.answer(text=f'<b>Привет</b>, {name}!', parse_mode='html')
-    await msg.answer(text=lexicon_ru['/start'], parse_mode='html',
-                     reply_markup=main_menu_board)
-
-@router.message(F.text == '⏎ Меню')
-@router.message(Command(commands='menu'))
-async def process_menu(msg: Message):
-    await msg.answer(text=lexicon_ru['menu'],
-                     reply_markup=main_menu_board)
-
-@router.message(F.text == '🗺 Маршрут')
-async def process_map(msg: Message):
-    await msg.answer(text=lexicon_ru['map'],
-                     reply_markup=main_menu_board)
-
-@router.message(F.text.in_({'🚗 Другой автомобиль', 'Автомобили'}))
-async def process_other_answer(msg: Message):
-    await msg.answer(text=lexicon_ru['choice'], parse_mode='html',
-                     reply_markup=brand_boards)
+    await msg.answer(text=lexicon_ru['/start'])
 
 @router.message(Command(commands='help'))
 async def process_help_command(msg: Message):
-    await msg.answer(text=lexicon_ru['/help'])
+    help_kb = BotKeyBoardHelp()()
+    await msg.answer(text=lexicon_ru['/help'], reply_markup=help_kb)
 
-@router.message(F.text.in_({*cars}))
-async def process_chery_answer(msg: Message):
-    match msg.text:
-        case 'Chery':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_chery_boards)
-        case 'Jetour':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_jetour_boards)
-        case 'Omoda':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_omoda_boards)
-        case 'Jaecoo':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_jaecoo_boards)
-        case 'Haval':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_haval_boards)
-        case 'Changan':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_changan_boards)
-        case 'Geely':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_jeely_boards)
-        case 'Москвич':
-            await msg.answer(text=lexicon_ru['choice'], reply_markup=models_jac_boards)
-        case _ :
-            await msg.answer(text='в разработке', reply_markup=brand_boards)
+@router.message(Command(commands='menu'))
+async def process_menu_command(msg: Message):
+    board = BotKeyBoard(*buttons['/menu'])(menu=False)
+    await msg.answer(text=lexicon_ru['/menu'], reply_markup=board)
 
-@router.message(F.text.in_({key for _, elem in cars.items() for key in elem}))
-async def process_chery_answer(msg: Message):
-    model = msg.text
-    for key, value in cars.items():
-        if model in value:
-            await msg.answer(text=cars[key][model])
-            await msg.answer_document(types.FSInputFile(path=os.path.join('specification', f'{model}.pdf')),
-                                      caption='держи спецификацию'
-    )
-            # link = f'{model}.pdf'
-            # print(os.path.join(os.getcwd(), 'specification', link))
-            # if link in os.listdir('specification'):
-            #     l = os.path.join(os.getcwd(), 'specification', link)
-            #     await msg.answer_document(document='https://storage.yandexcloud.net/s3-moskvich-new/cms/1ee6/67/f93b0bc84e78c15184f59c2f636ec4cb8b0e7814.pdf')
-                #(msg.chat.id, os.path.join(os.getcwd(), 'specification', link))
-                                            # open(l, 'rb'))
-            #     with open(os.path.join(os.getcwd(), 'specification', link), 'rb') as file:
-            #         await msg.bot.send_document(msg.chat.id, file)
+@router.callback_query(F.data == '/menu')
+async def process_main_callback(clbk: CallbackQuery):
+    board = BotKeyBoard(*buttons['/menu'])(menu=False)
+    await clbk.message.edit_text(text=lexicon_ru['/menu'], reply_markup=board)
+    await clbk.answer()
+
+@router.callback_query(F.data == 'Автомобили')
+async def process_car_callback(clbk: CallbackQuery):
+    board = BotKeyBoard(*cars)()
+    await clbk.message.edit_text(text=lexicon_ru['Автомобили'], reply_markup=board)
+    await clbk.answer()
+
+@router.callback_query(F.data == 'Маршрут')
+async def process_map_callback(clbk: CallbackQuery):
+    board = BotKeyBoard(*buttons['Маршрут'])()
+    await clbk.message.edit_text(text=lexicon_ru['Маршрут'], reply_markup=board)
+    await clbk.answer()
+
+@router.callback_query(F.data.in_({*cars}))
+async def process_brand_callback(clbk: CallbackQuery):
+    brand = clbk.data
+    board = BotKeyBoard(*cars[brand])()
+    await clbk.message.edit_text(text=lexicon_ru[brand], reply_markup=board, parse_mode='Markdown')
+    await clbk.answer()
+
+@router.callback_query(F.data.in_({key for _, elem in cars.items() for key in elem}))
+async def process_model_callback(clbk: CallbackQuery):
+    model = clbk.data
+    brand = ''.join(brand for brand, models in cars.items() for m in models if m == model)
+    board = BotKeyBoard(*cars[brand])()
+    await clbk.message.delete_reply_markup()
+    await clbk.message.answer(text=cars[brand][model], reply_markup=board)
+    if f'{model}.pdf' in os.listdir('specification'):
+        await clbk.message.answer_document(types.FSInputFile(path=os.path.join('specification', f'{model}.pdf')),
+                                           caption='держи спецификацию')

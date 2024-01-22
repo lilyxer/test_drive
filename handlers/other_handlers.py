@@ -1,14 +1,12 @@
 from aiogram import Router
 from aiogram.types import Message
 
-from lexicon.lexicon import lexicon_ru
-
 
 router = Router()
 
 @router.message()
 async def send_answer(msg: Message):
-    await msg.answer(text='Жёванный крот! я не чат GPT\nпользуйся встроенной клавиатурой :)')
+    await msg.answer(text='Я не знаю таких команд, пожалуйста нажми\n/start - запусти меня и пользуйся клавиатурой')
 
 # @router.message()
 # async def send_echo(msg: Message):

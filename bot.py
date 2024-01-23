@@ -5,7 +5,7 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from config_data.config import Config, load_config
-from aiogram.contrib.middlewares.logging import LoggingMiddleware
+
 from handlers import other_handlers,user_handlers
 
 

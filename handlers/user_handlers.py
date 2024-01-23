@@ -11,7 +11,8 @@ router = Router()
 
 @router.message(CommandStart())
 async def process_start_command(msg: Message):
-    await msg.answer(text=lexicon_ru['/start'])
+    help_kb = BotKeyBoardHelp()()
+    await msg.answer(text=lexicon_ru['/start'], reply_markup=help_kb)
 
 @router.message(Command(commands='help'))
 async def process_help_command(msg: Message):

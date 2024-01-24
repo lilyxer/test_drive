@@ -27,8 +27,18 @@ async def main() -> None:
     dp.include_router(user_handlers.router)
     dp.include_router(other_handlers.router)
 
+    # await bot.delete_webhook(drop_pending_updates=True)
+    # await dp.start_polling(bot)
+
+
     await bot.delete_webhook(drop_pending_updates=True)
-    await dp.start_polling(bot)
+    wb_info = await bot.get_webhook_info()
+
+    if wb_info.allowed_updates:
+        await dp.start_polling(bot, allowed_updates=[])
+
+    else:
+        await dp.start_polling(bot)
 
 
 if __name__ == '__main__':

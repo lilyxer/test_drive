@@ -5,6 +5,7 @@ __pycache__/
 specification/
 _.py
 */old_*
+nohup.out
 
 # nohup python3 bot.py &
 # killall python3

@@ -25,7 +25,7 @@ class Brand:
         self.site = f'\n<b><a href="{self.name}">официальная страница {self.site}</a></b>'
 
     def __str__(self):
-        return ''.join(x for x in self.__dict__.values() if x)
+        return ''.join(self.__dict__.values())
 
 
 @dataclass
@@ -60,6 +60,44 @@ class ModelD:
                 f'<b>Габариты автомобиля:</b>\n{self.size}\n'
                 f'<b>Масса автомобиля:</b>\n{self.mass}кг\n'
                 f'<b>Объём бака:</b>\n{self.fuel} л\n'
+                f'<b>Дорожный просвет:</b>\n{self.clearance} мм\n\n'
+                f'<b>Тип привода:</b>\n{self.drive}\n'
+                f'<b>Подвеска:</b>\n{self.susp}\n\n'
+                f'<b>Комплектации:</b>\n{self.equip}\n'
+                f'<b>Цена:</b>\n{self.price} руб\n\n'
+                f'<b><a href="{self.page}">официальная страница {self.model}</a></b>')
+
+
+@dataclass
+class ModelHE:
+    brand: str = ''
+    model: str = ''
+    engine: str = ''
+    power: str = ''
+    torque: str = ''
+    acceleration: str = ''
+    wlpt: str = ''
+    size: str = ''
+    mass: str = ''
+    battery: str = ''
+    clearance: str = ''
+    drive: str = ''
+    susp: str = ''
+    equip: str = ''
+    price: str = ''
+    page: str =''
+
+    def __str__(self) -> str:
+        return (f'{self.brand.upper()}\n'
+                f'{self.model.upper()}\n\n'
+                f'<b>Двигатель:</b>\nЭлектрический {self.engine}\n'
+                f'<b>Пиковая мощность:</b>\n{self.power} л.с.\n'
+                f'<b>Момент:</b>\n{self.torque} Нм\n'
+                f'<b>Разгон до 100 км/ч:</b>\n{self.acceleration} сек\n'
+                f'<b>Запас хода WLTP</b>\n{self.wlpt} км\n\n'
+                f'<b>Габариты автомобиля:</b>\n{self.size}\n'
+                f'<b>Масса автомобиля:</b>\n{self.mass} кг\n'
+                f'<b>Объём батареи:</b>\n{self.battery} кВт\ч\n'
                 f'<b>Дорожный просвет:</b>\n{self.clearance} мм\n\n'
                 f'<b>Тип привода:</b>\n{self.drive}\n'
                 f'<b>Подвеска:</b>\n{self.susp}\n\n'

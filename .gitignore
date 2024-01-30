@@ -2,6 +2,7 @@
 venv_my_bot/
 .vscode/
 __pycache__/
+*/__pycache__/
 specification/
 _.py
 */old_*

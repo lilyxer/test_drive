@@ -13,19 +13,15 @@ class Brand:
     site: str = field(default='')
     lang: str = field(default='')
 
-    def __post_init__(self):
-        self.name = f'{self.name.upper()}'
-        self.concern = f'\n\nВходит в концерн <b>{self.concern}</b>' if self.concern else ''
-        self.local = f'Локализованная версия <b>{self.local}</b>,' if self.local else ''
-        self.foundation = f' основание в <b>{self.foundation}</b>\n'
-        self.type_of = f'Основными типами автомобилей компании являются <b>{self.type_of}</b>\n'
-        self.start = f'Продажи автомобилей в России начались в <b>{self.start}</b>\n'
-        self.in_russia = f'В России собирались на заводе <b>{self.in_russia}</b>' if self.in_russia else ''
-        self.year = f' _{self.year}_\n' if self.year else ''
-        self.site = f'\n<b><a href="{self.name}">официальная страница {self.site}</a></b>'
-
     def __str__(self):
-        return ''.join(self.__dict__.values())
+        ru =  f'В России собирались на заводе <b>{self.in_russia}</b> {self.year}\n' if self.in_russia else ''
+        con = f'Входит в концерн <b>{self.concern}</b>, ' if self.concern else f'Локализованная версия <b>{self.local}</b>,'
+        return (f'{self.name.upper()}\n\n'
+                f'{con}основание в <b>{self.foundation}</b>\n'
+                f'Основными типами автомобилей компании являются <b>{self.type_of}</b>\n'
+                f'Продажи автомобилей в России начались в <b>{self.start}</b>\n'
+                f'{ru}'
+                f'<b><a href="{self.site}">официальная страница {self.name}</a></b>')
 
 
 @dataclass

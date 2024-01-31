@@ -8,6 +8,8 @@ _.py
 */old_*
 nohup.out
 archive.tar
+*.zip
+pres/
 
 # nohup python3 bot.py &
 # killall python3

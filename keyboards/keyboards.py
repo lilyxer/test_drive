@@ -14,6 +14,7 @@ class BotKeyBoard:
             board.row(InlineKeyboardButton(text='Меню', callback_data='/menu'))
         return board.as_markup()
 
+
 class BotKeyBoardHelp:
     def __call__(self) -> ReplyKeyboardMarkup:
         board = ReplyKeyboardBuilder()

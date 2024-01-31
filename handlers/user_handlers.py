@@ -42,6 +42,19 @@ async def process_map_callback(clbk: CallbackQuery):
     await clbk.message.edit_text(text=lexicon_ru['Маршрут'], reply_markup=board)
     await clbk.answer()
 
+@router.callback_query(F.data.in_({*os.listdir('pres'), 'Презентации'}))
+# @router.callback_query(F.data == 'Презентации')
+async def process_map_callback(clbk: CallbackQuery):
+    board = BotKeyBoard(*os.listdir('pres'))()
+    if clbk.data in os.listdir('pres'):
+        await clbk.message.delete_reply_markup()
+        await clbk.message.answer(text=f'Загружаю {clbk.data[:-4]}... Ещё нужна какая преза?', reply_markup=board)
+        await clbk.message.answer_document(types.FSInputFile(path=os.path.join('pres', clbk.data)),
+                                           caption=f'держи презентацию по {clbk.data[:-4]}')
+    else:
+        await clbk.message.edit_text(text=lexicon_ru['Презентации'], reply_markup=board)
+    await clbk.answer()
+
 @router.callback_query(F.data.in_({'До обеда', 'После обеда'}))
 async def process_get_point(clbk: CallbackQuery):
     btn = 'До обеда' if clbk.data == 'После обеда' else 'После обеда'

@@ -19,10 +19,14 @@ class TgBot:
 @dataclass
 class Config:
     tg_bot: TgBot
+    admin_id: int
     # db: DatabaseConfig
 
 
 def load_config(path: str|None = None) -> Config:
     env = Env()
     env.read_env(path)
-    return Config(tg_bot=TgBot(token=env('bot_token')))
+    return Config(
+        tg_bot=TgBot(token=env('bot_token')),
+        admin_id=env('admin_ids')
+        )

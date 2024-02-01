@@ -24,6 +24,14 @@ async def main() -> None:
     bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
     dp = Dispatcher()
 
+    @dp.startup()
+    async def start_bot(bot: Bot):
+        await bot.send_message(chat_id=config.admin_id, text='Бот запущен')
+
+    @dp.shutdown()
+    async def stop_bot(bot: Bot):
+        await bot.send_message(chat_id=config.admin_id, text='Бот остановлен')
+
     dp.include_routers(user_handlers.router, other_handlers.router)
     # dp.include_router(user_handlers.router)
     # dp.include_router(other_handlers.router)

@@ -10,6 +10,7 @@ nohup.out
 archive.tar
 *.zip
 pres/
+downloads/
 
 # nohup python3 bot.py &
 # killall python3

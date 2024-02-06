@@ -4,7 +4,7 @@ from lexicon.lexicon import lexicon_ru
 
 
 class BotKeyBoard:
-    def __init__(self, *keys: tuple) -> None:
+    def __init__(self, *keys: tuple[str]) -> None:
         self._buttons = [InlineKeyboardButton(text=x, callback_data=x) for x in keys]
 
     def __call__(self, width: int=3, menu: bool=True) -> InlineKeyboardMarkup:

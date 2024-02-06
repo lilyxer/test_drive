@@ -1,17 +1,20 @@
 import os
 
-from aiogram import Router, F, types, Bot
+from aiogram import Router, F, types
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message, ContentType
 from keyboards.keyboards import BotKeyBoard, BotKeyBoardHelp
 from lexicon.lexicon import lexicon_ru, buttons, cars
+from config_data.config import Config, load_config
 
 
 router = Router()
+config: Config = load_config()
 
 @router.message(CommandStart())
 async def process_start_command(msg: Message):
     help_kb = BotKeyBoardHelp()()
+    await msg.bot.send_message(chat_id=config.admin_id, text=f'{msg.from_user.id}_{msg.from_user.full_name} запустил бота')
     await msg.answer(text=lexicon_ru['/start'], reply_markup=help_kb)
 
 @router.message(Command(commands='help'))
@@ -80,8 +83,8 @@ async def process_model_callback(clbk: CallbackQuery):
         await clbk.message.answer_document(types.FSInputFile(path=os.path.join('specification', f'{_model.model}.pdf')),
                                            caption='держи спецификацию')
 
-@router.message(F.content_type == ContentType.DOCUMENT)
-async def process_save_doc(msg: Message, bot: Bot):
-    file = await bot.get_file(msg.document.file_id)
+@router.message(F.document)
+async def process_save_doc(msg: Message):
+    file = await msg.bot.get_file(msg.document.file_id)
     await msg.answer(text=f'документ {msg.document.file_name} получил')
-    await bot.download_file(file.file_path, f'{os.path.join("downloads", msg.document.file_name)}')
+    await msg.bot.download_file(file.file_path, f'{os.path.join("downloads", msg.document.file_name)}')

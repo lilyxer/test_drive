@@ -8,7 +8,6 @@ from config_data.config import Config, load_config
 
 from handlers import other_handlers,user_handlers
 
-
 logger = logging.getLogger(name = __name__)
 
 async def main() -> None:

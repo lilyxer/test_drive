@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 
+
 @dataclass
 class Brand:
     name: str = field(default='')
@@ -100,6 +101,7 @@ class ModelE:
                 f'<b>Комплектации:</b> ..... {self.equip}\n'
                 f'<b>Цена:</b> ..... {self.price} руб\n\n'
                 f'<b><a href="{self.page}">официальная страница {self.model}</a></b>')
+
 
 @dataclass
 class ModelHE:

@@ -1,5 +1,6 @@
 .env
 venv_my_bot/
+_venv/
 .vscode/
 __pycache__/
 */__pycache__/

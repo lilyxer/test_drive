@@ -163,7 +163,7 @@ cars: list[ModelD] = [
            acceleration='8.6', consumption='независимая типа McPherson\nнезависимая многорычажная',
            transmission='роботизированная DCT7',
            size='4820 x 1930 x 1710', mass='1929', fuel='65', clearance='210',
-           drive='интеллектуальный полный', equip='Active Supreme SupremeV', susp='независимая McPherson\nнезависимая многорычажная'
+           drive='интеллектуальный полный', equip='Active Supreme SupremeV', susp='независимая McPherson\nнезависимая многорычажная',
            price='ПРЕДЗАКАЗ', page='https://jaecoo.ru/models/modelj8/'),
     ModelD(brand='Haval', model='H9', engine='2.0T', power='218', torque='380',
            acceleration='11.0', consumption='12.6', transmission='АКПП8 ZF',

@@ -432,7 +432,7 @@ cars: list[ModelD, ModelE, ModelHE] = [
             torque='1040', acceleration='4.5', wlpt='674', consumption='1.3', size='4905 x 1950 x 1645',
             mass='2290', fuel='56', battery='33', clearance='180', drive='полный',
             susp='двурычажная адаптивная пневмоподвеска\nмногорычажная адаптивная пневмоподвеска',
-            equip='EVR', price='5 500 000', page='https://voyah.su/voyah-free-evr?main_menu/'),
+            equip='EVR', price='4 900 000', page='https://voyah.su/voyah-free-evr?main_menu/'),
     ModelHE(brand='Voyah', model='Free_evr_lr', engine='генератор 1.5T и 2 синхронных электродвигателя '
             'с твердыми магнитами и жидкостным охлаждением', power='489',
             torque='720', acceleration='4.8', wlpt='800', consumption='1.3', size='4905 x 1950 x 1645',
@@ -444,7 +444,7 @@ cars: list[ModelD, ModelE, ModelHE] = [
            acceleration='4.7', wlpt='500', size='4905 x 1950 x 1645', mass='2340', battery='106',
            clearance='180', drive='полный',
            susp='двурычажная адаптивная пневмоподвеска\nмногорычажная адаптивная пневмоподвеска',
-           equip='EV', price='9 390 000', page='https://voyah.su/voyah-free?main_menu/'),
+           equip='EV', price='5 490 000', page='https://voyah.su/voyah-free?main_menu/'),
     ModelE(brand='Voyah', model='Dream_ev', engine='2 электромотора', power='435', torque='620',
            acceleration='5.9', wlpt='482', size='5315 x 1985 x 1800', mass='2625', battery='108.7',
            clearance='150', drive='полный', susp='двурычажная адаптивная пневмоподвеска\n'
@@ -454,13 +454,13 @@ cars: list[ModelD, ModelE, ModelHE] = [
             torque='610', acceleration='6.6', wlpt='750', consumption='1.3', size='5315 x 1985 x 1800',
             mass='2540', fuel='51', battery='25.57', clearance='150', drive='полный',
             susp='двурычажная адаптивная пневмоподвеска\nмногорычажная адаптивная пневмоподвеска',
-            equip='PHEV', price='10 290 000', page='https://voyah.su/voyah-dream?main_menu/'),
+            equip='PHEV', price='7 550 000', page='https://voyah.su/voyah-dream?main_menu/'),
     ModelHE(brand='Voyah', model='Dream_first', engine='генератор 1.5T и 2 электромотора', power='394',
             torque='610', acceleration='6.6', wlpt='750', consumption='1.1', size='5315 x 1985 x 1800',
             mass='2672', fuel='51', battery='25.57', clearance='150', drive='полный',
             susp='двурычажная адаптивная пневмоподвеска\nмногорычажная адаптивная пневмоподвеска',
             equip='First', price='16 990 000', page='https://voyah.su/voyah-dream-first?main_menu/'),
-    ModelE(brand='Voyah', model='  ', engine='2 электромотора', power='510', torque='730',
+    ModelE(brand='Voyah', model='Passion_ev', engine='2 электромотора', power='510', torque='730',
            acceleration='3.8', wlpt='483', size='5088 x 1970 x 1505', mass='2266', battery='82.11',
            clearance='121', drive='полный', susp='двурычажная адаптивная пневмоподвеска\n'
            'многорычажная адаптивная пневмоподвеска', equip='EV', price='8 490 000',

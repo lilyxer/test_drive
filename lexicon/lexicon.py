@@ -184,10 +184,12 @@ cars: list[ModelD, ModelE, ModelHE] = [
            '\nс гидравлическими телескопическими амортизаторами и стабилизаторами поперечной устойчивости',
            equip='Elite Premium',
            price='4 299 000 - 5 299 000', page='https://haval.ru/models/haval-h9-new/'),
-    ModelD(brand='Haval_PRO', model='H5', engine='???', power='???', torque='???',
-           acceleration='???', consumption='???', transmission='???',
-           size='???', mass='???', fuel='???', clearance='???',
-           drive='???', susp='???',
+    ModelD(brand='Haval_PRO', model='H5', engine='2.0T - 2.0TD', power='200 - 150', torque='380 - 400',
+           acceleration='10.8 - 12.8', consumption='???', transmission='автоматическая AT8',
+           size='5190 x 1905 x 1835', mass='2240 - 2310', fuel='80 - 78', clearance='200',
+           drive='полный', susp='независимая рычажная\n'
+           'зависимая рычажная\n'
+           'с гидравлическими телескопическими амортизатрами, со стабилизатором поперечной устойчивости',
            equip='???',
            price='ПРЕДЗАКАЗ', page='https://haval.ru/models/haval-h5/'),
     ModelD(brand='Haval_PRO', model='H3', engine='1.5T', power='143 - 177', torque='210 - 270',
